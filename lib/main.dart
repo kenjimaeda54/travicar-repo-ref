@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
         primarySwatch: Colors.blue,
       ),
-      home: const MapScreen(),
+      home: const MapView(),
     );
   }
 }

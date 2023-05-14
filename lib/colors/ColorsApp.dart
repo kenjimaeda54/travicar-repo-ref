@@ -5,4 +5,5 @@ class ColorsApp  {
   static var black025 = Colors.black.withOpacity(0.25);
   static var black = Colors.black;
   static var gray = const  Color.fromRGBO(180, 181, 189, 1);
+  static var grayBlack = const  Color.fromRGBO(51, 57, 63, 1); //#33393F
 }
