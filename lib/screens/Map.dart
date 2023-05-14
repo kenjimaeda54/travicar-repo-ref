@@ -5,6 +5,7 @@ import 'package:flutter_map_line_editor/dragmarker.dart';
 import 'package:flutter_map_line_editor/polyeditor.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:indexed/indexed.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:trivato/colors/ColorsApp.dart';
 
@@ -22,6 +23,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
       curve: Curves.easeInOut);
   LatLng? _currentPosition;
   late PolyEditor polyEditor;
+
 
   List<Polygon> polygons = [];
 
@@ -83,17 +85,17 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     polygons.add(firstPolygon);
   }
 
-  handleMapReady() async {
-    final hasPermission = await _handleLocationPermission();
-    if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
-        .then((Position position) {
-      setState(() => _mapController.move(
-          LatLng(position.latitude, position.longitude), 17));
-    }).catchError((e) {
-      debugPrint(e);
-    });
-  }
+  // handleMapReady() async {
+  //   final hasPermission = await _handleLocationPermission();
+  //   if (!hasPermission) return;
+  //   await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+  //       .then((Position position) {
+  //     setState(() => _mapController.move(
+  //         LatLng(position.latitude, position.longitude), 17));
+  //   }).catchError((e) {
+  //     debugPrint(e);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -102,10 +104,9 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
         FlutterMap(
           mapController: _mapController,
           options: MapOptions(
-            center: LatLng(-15.7217621, -47.9373578),
-            zoom: 15,
+            center: LatLng(-18.1778564, -54.8739394),
+            zoom: 4,
             onTap: handlePolygon,
-            onMapReady: handleMapReady,
           ),
           children: [
             TileLayer(
@@ -125,49 +126,91 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
             padding: EdgeInsets.symmetric(
                 vertical: MediaQuery.of(context).padding.top + 10,
                 horizontal: 20),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: ColorsApp.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: ColorsApp.black025,
-                    spreadRadius: 0,
-                    blurRadius: 12,
-                    offset: const  Offset(0, 4), // changes position of shadow
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.73,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: ColorsApp.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: ColorsApp.black025,
+                                spreadRadius: 0,
+                                blurRadius: 12,
+                                offset: const Offset(
+                                    0, 4), // changes position of shadow
+                              ),
+                            ]),
+                        child: TextField(
+                          cursorColor: ColorsApp.black,
+                          maxLines: 5,
+                          maxLength: 80,
+                          minLines: 1,
+                          decoration: InputDecoration(
+                              counterText: "",
+                              label: Text(
+                                "Buscar...",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                  height: 1.18,
+                                  color: ColorsApp.gray,
+                                ),
+                              ),
+                              border: InputBorder.none,
+                              suffixIcon: const Icon(Icons.search, size: 30),
+                              suffixIconColor: ColorsApp.black,
+                              prefixIcon: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15),
+                                  child: SvgPicture.asset(
+                                      "assets/icons/menu.svg",
+                                      colorFilter: ColorFilter.mode(
+                                          ColorsApp.black, BlendMode.srcIn),
+                                      width: 28,
+                                      height: 28,
+                                      fit: BoxFit.contain)),
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 14)),
+                        ),
+                      ),
+                      IconButton(
+                        iconSize: 52,
+                        onPressed: () => print("cliquei no layer"),
+                        icon: SvgPicture.asset(
+                          "assets/icons/layer.svg",
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
+                    ],),
+                IconButton(
+                  iconSize: 52,
+                  onPressed:  () => print("cliquei no user location"),
+                  icon: SvgPicture.asset(
+                    "assets/icons/user_location.svg",
+                    width: 50,
+                    height: 50,
                   ),
-                ]
-              ),
-              child: TextField(
-                cursorColor: ColorsApp.black,
-                maxLines: 3,
-                maxLength: 90,
-                minLines: 1,
-                decoration: InputDecoration(
-                    counterText: "",
-                    label:   Text("Buscar...", style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      height: 1.18,
-                      color: ColorsApp.gray,
-                    ),),
-                    border: InputBorder.none,
-                    suffixIcon: const Icon(Icons.search,size: 30),
-                    suffixIconColor: ColorsApp.black,
-                    prefixIcon: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: SvgPicture.asset("assets/icons/menu.svg",
-                            colorFilter:  ColorFilter.mode(
-                              ColorsApp.black, BlendMode.srcIn),
-                            width: 28,
-                            height: 28,
-                            fit: BoxFit.contain)),
-                    contentPadding:
-                        const EdgeInsets.symmetric(vertical: 10, horizontal: 14)),
-              ),
+                ),
+                IconButton(
+                  iconSize: 52,
+                  onPressed:  () => print("cliquei no resize"),
+                  icon: SvgPicture.asset(
+                    "assets/icons/resize.svg",
+                    width: 50,
+                    height: 50,
+                  ),
+                ),
+              ],
             ),
           ),
-        )
+        ),
       ]),
     );
   }

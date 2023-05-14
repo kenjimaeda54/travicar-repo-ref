@@ -38,6 +38,7 @@ dependencies:
   geocoding: ^2.0.4
   flutter_map_animations: ^0.3.0
   flutter_svg: ^2.0.5
+  indexed: ^0.0.8
 
 dev_dependencies:
   flutter_test:
