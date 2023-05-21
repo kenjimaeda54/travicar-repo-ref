@@ -31,7 +31,7 @@ class BarButtonFeatures extends HookWidget {
         width: widthCard,
         child: Padding(
           padding:
-              const EdgeInsets.only(left: 30, right: 30, top: 6, bottom: 10),
+              const EdgeInsets.only(left: 30, right: 30, top: 3, bottom: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -49,7 +49,7 @@ class BarButtonFeatures extends HookWidget {
                                 color: ColorsApp.grayBlack,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
-                                height: 1.16,
+                                height: 1.1,
                               ),
                             ),
                           ])

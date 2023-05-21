@@ -32,13 +32,17 @@ class _MapViewState extends State<MapView> with TickerProviderStateMixin {
   ];
   var typeMapSelected = "";
   List<Polygon> polygons = [];
+  double markerAngle = 0.0;
+  LatLng markerPoint = LatLng(0.0,0.0);
+  ValueNotifier<LatLng> latLng = ValueNotifier<LatLng>(LatLng(0.0,0.0));
+  bool isAnimated = false;
   List<ListFeatures> features = [
     ListFeatures(title: "Pivô", iconPath: "assets/icons/pivot.svg"),
     ListFeatures(title: "Polígono", iconPath: "assets/icons/polygon.svg"),
     ListFeatures(title: "Régua", iconPath: "assets/icons/ruler.svg"),
   ];
 
-  var firstPolygon = Polygon(
+  final  firstPolygon = Polygon(
       color: const Color.fromRGBO(144, 238, 144, 0.5),
       isFilled: true,
       points: [],
@@ -162,9 +166,7 @@ class _MapViewState extends State<MapView> with TickerProviderStateMixin {
         ),
         Positioned(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).padding.top + 10,
-                horizontal: 20),
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10,left: 20,right: 20,bottom: MediaQuery.of(context).padding.bottom + 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

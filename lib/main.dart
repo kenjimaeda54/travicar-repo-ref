@@ -1,5 +1,9 @@
+import 'dart:collection';
 import 'package:flutter/material.dart';
-import 'package:trivato/screens/Map.dart';
+import 'package:trivato/constants/AppRoutes.dart';
+import 'package:trivato/ui/Map.dart';
+import 'package:trivato/ui/RegisterOrLogin.dart';
+import 'package:trivato/ui/Sigin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +21,11 @@ class MyApp extends StatelessWidget {
         fontFamily: "Roboto",
         primarySwatch: Colors.blue,
       ),
-      home: const MapView(),
+      routes: {
+        AppRoutes.firstRoute: (_) => const RegisterOrLogin(),
+        AppRoutes.mapRoute: (_) => const MapView(),
+        AppRoutes.sigIn: (_) =>   Sigin(),
+      },
     );
   }
 }
