@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:trivato/colors/ColorsApp.dart';
+import 'package:trivato/constants/AppRoutes.dart';
 import 'package:trivato/widget/ButtonCommon.dart';
 import 'package:trivato/widget/TextFieldWithLabel.dart';
 
@@ -69,7 +70,7 @@ class Sigin extends HookWidget {
                     ),
                   ),
                   const SizedBox(height: 53,),
-                  ButtonCommon(backgroundColorBtn: ColorsApp.grayBlack, colorTitleBtn: ColorsApp.white, titleBtn: "Entrar", onPressed: (){}),
+                  ButtonCommon(backgroundColorBtn: ColorsApp.grayBlack, colorTitleBtn: ColorsApp.white, titleBtn: "Entrar", onPressed: () => Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.mapRoute, (route) => true)),
                   const SizedBox(height: 48,),
                   Divider(
                     height: 1,

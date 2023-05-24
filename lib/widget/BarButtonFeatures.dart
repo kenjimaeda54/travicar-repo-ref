@@ -4,18 +4,23 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:trivato/colors/ColorsApp.dart';
 
 class ListFeatures {
-  late String title;
-  late String iconPath;
+  final String title;
+  final String iconPath;
+  final int id;
 
-  ListFeatures({required this.title, required this.iconPath});
+  ListFeatures({required this.title, required this.iconPath, required this.id});
 }
 
 class BarButtonFeatures extends HookWidget {
-  late List<ListFeatures> features;
-  late double? widthCard;
+  final List<ListFeatures> features;
+  final Function(int idFeature) handleClickedFeature;
+  final double? widthCard;
 
-  BarButtonFeatures(
-      {Key? key, required this.features, this.widthCard = double.infinity})
+  const BarButtonFeatures(
+      {Key? key,
+      required this.features,
+      this.widthCard = double.infinity,
+      required this.handleClickedFeature})
       : super(key: key);
 
   @override
@@ -40,8 +45,12 @@ class BarButtonFeatures extends HookWidget {
                         children: [
                           Column(children: [
                             IconButton(
-                              onPressed: () {},
-                              icon: SvgPicture.asset(it.iconPath,height: 19,width: 19,),
+                              onPressed: () => handleClickedFeature(it.id),
+                              icon: SvgPicture.asset(
+                                it.iconPath,
+                                height: 19,
+                                width: 19,
+                              ),
                             ),
                             Text(
                               it.title,
