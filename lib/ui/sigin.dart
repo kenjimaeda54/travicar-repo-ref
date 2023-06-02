@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:trivato/colors/ColorsApp.dart';
 import 'package:trivato/constants/AppRoutes.dart';
-import 'package:trivato/widget/ButtonCommon.dart';
-import 'package:trivato/widget/TextFieldWithLabel.dart';
+import 'package:trivato/widget/button_common.dart';
+import 'package:trivato/widget/text_field_with_label.dart';
 
 class Sigin extends HookWidget {
   Sigin({Key? key}) : super(key: key);

@@ -3,7 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:trivato/colors/ColorsApp.dart';
 import 'package:trivato/constants/AppRoutes.dart';
-import 'package:trivato/widget/ButtonCommon.dart';
+import 'package:trivato/widget/button_common.dart';
 
 class RegisterOrLogin extends HookWidget {
   const RegisterOrLogin({Key? key}) : super(key: key);

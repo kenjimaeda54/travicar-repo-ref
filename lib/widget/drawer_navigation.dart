@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:trivato/widget/TextButtonIconText.dart';
+import 'package:trivato/constants/AppRoutes.dart';
+import 'package:trivato/widget/text_button_icon_text.dart';
 
 class DrawerNavigation extends HookWidget {
- const  DrawerNavigation({Key? key}) : super(key: key);
+  const DrawerNavigation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +30,11 @@ class DrawerNavigation extends HookWidget {
                   const SizedBox(
                     width: 17,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
-                      children: const [
+                      children: [
                         Text("Entrar",
                             style: TextStyle(
                               fontFamily: 'Roboto',
@@ -60,37 +61,46 @@ class DrawerNavigation extends HookWidget {
               ),
             ),
           ),
-          const TextButtonIconText(
-            assetsButton: "assets/icons/areas.svg",
-            titleButton: "Áreas",
-          ),
-          const TextButtonIconText(
+          TextButtonIconText(
+              assetsButton: "assets/icons/areas.svg",
+              titleButton: "Áreas",
+              onPressed: () => Navigator.of(context)
+                  .pushReplacementNamed(AppRoutes.mapRoute)),
+          TextButtonIconText(
             assetsButton: "assets/icons/areas_save.svg",
             titleButton: "Áreas salvas",
+            onPressed: () =>  Navigator.of(context)
+                .pushReplacementNamed(AppRoutes.savedArea),
           ),
-          const TextButtonIconText(
+          TextButtonIconText(
             assetsButton: "assets/icons/properties.svg",
             titleButton: "Propriedades",
+            onPressed: () {},
           ),
-          const TextButtonIconText(
+          TextButtonIconText(
             assetsButton: "assets/icons/sync_now.svg",
             titleButton: "Sincronizar agora",
+            onPressed: () {},
           ),
-          const TextButtonIconText(
+          TextButtonIconText(
             assetsButton: "assets/icons/import_pen_drive.svg",
             titleButton: "Importar do pen-drive",
+            onPressed: () {},
           ),
-          const TextButtonIconText(
+          TextButtonIconText(
             assetsButton: "assets/icons/config.svg",
             titleButton: "Configurações",
+            onPressed: () {},
           ),
-          const TextButtonIconText(
+          TextButtonIconText(
             assetsButton: "assets/icons/chat.svg",
             titleButton: "Contate-nos via Whatsapp",
+            onPressed: () {},
           ),
-          const TextButtonIconText(
+          TextButtonIconText(
             assetsButton: "assets/icons/apps_agriculture.svg",
             titleButton: "Apps para agricultores",
+            onPressed: () {},
           ),
         ],
       ),

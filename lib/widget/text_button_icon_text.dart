@@ -6,15 +6,16 @@ import 'package:trivato/colors/ColorsApp.dart';
 class TextButtonIconText extends HookWidget {
   final String titleButton;
   final String assetsButton;
+  final Function() onPressed;
 
   const TextButtonIconText(
-      {Key? key, required this.titleButton, required this.assetsButton})
+      {Key? key, required this.titleButton, required this.assetsButton,required this.onPressed})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: SizedBox(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,

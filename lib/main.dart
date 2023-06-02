@@ -1,9 +1,10 @@
-import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:trivato/constants/AppRoutes.dart';
-import 'package:trivato/ui/Map.dart';
-import 'package:trivato/ui/RegisterOrLogin.dart';
-import 'package:trivato/ui/Sigin.dart';
+import 'package:trivato/ui/map/map.dart';
+import 'package:trivato/ui/register_or_login.dart';
+import 'package:trivato/ui/save_area.dart';
+import 'package:trivato/ui/saved_area/saved_area.dart';
+import 'package:trivato/ui/sigin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,9 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.firstRoute: (_) => const RegisterOrLogin(),
         AppRoutes.mapRoute: (_) => const MapView(),
-        AppRoutes.sigIn: (_) =>   Sigin(),
+        AppRoutes.saveArea: (_) => const SaveArea(),
+        AppRoutes.savedArea: (_) =>   SavedArea(),
+        AppRoutes.sigIn: (_) => Sigin(),
       },
     );
   }
